@@ -9,11 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #F8F8F0;
-            --text-color: #5C6B53;
-            --accent-green: #A3B18A;
-            --btn-green: #9DAF8F;
-            --border-color: #D3D8C7;
+            --bg-color: #FAF6EE;       /* Гармонійний відтінок Ivory (слонова кістка) */
+            --text-color: #4A121A;     /* Глибокий винний колір для тексту */
+            --accent-color: #6B1724;   /* Благородний Burgundy для акцентних блоків */
+            --btn-color: #801424;      /* Насичений бордовий для кнопок та активних елементів */
+            --border-color: #E6DCC8;   /* М'який пастельний колір для меж та ліній */
             --font-cursive: 'Great Vibes', cursive;
             --font-main: 'Cormorant Garamond', serif;
         }
@@ -99,7 +99,7 @@
         .envelope-placeholder {
             width: 280px;
             height: 200px;
-            background-color: var(--accent-green);
+            background-color: var(--accent-color);
             border-radius: 10px;
             margin-top: 40px;
             display: flex;
@@ -111,14 +111,14 @@
         .wax-seal {
             width: 60px;
             height: 60px;
-            background-color: #F8F8F0;
+            background-color: var(--bg-color);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: var(--font-main);
             font-size: 1.5rem;
-            color: var(--accent-green);
+            color: var(--accent-color);
             box-shadow: inset 0 0 5px rgba(0,0,0,0.2), 0 2px 5px rgba(0,0,0,0.2);
         }
 
@@ -155,6 +155,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             position: relative;
             z-index: 2;
+            color: var(--text-color);
         }
 
         /* Секція 4: Календар */
@@ -255,7 +256,7 @@
         .t-line {
             width: 1px;
             height: 40px;
-            background-color: var(--text-color);
+            background-color: #fff;
         }
 
         /* Секція 8: Форма RSVP */
@@ -285,12 +286,12 @@
         }
         input[type="radio"] {
             margin-right: 10px;
-            accent-color: var(--btn-green);
+            accent-color: var(--btn-color);
         }
         button[type="submit"] {
             width: 100%;
             padding: 15px;
-            background-color: var(--btn-green);
+            background-color: var(--btn-color);
             color: #fff;
             border: none;
             border-radius: 25px;
@@ -311,7 +312,7 @@
         }
         .decor {
             font-size: 1.5rem;
-            color: var(--btn-green);
+            color: var(--btn-color);
         }
     </style>
 </head>
@@ -341,7 +342,7 @@
         <p>Одне «так»</p>
     </section>
 
-    <section id="invite" class="fade-in" style="background-color: var(--accent-green); color: var(--text-color);">
+    <section id="invite" class="fade-in" style="background-color: var(--accent-color); color: #fff;">
         <div class="invite-card">
             <h2>Любі Гості!</h2>
             <p>Ми раді запросити вас на наше весілля — у день, сповнений любові, світла й справжніх емоцій.</p>
@@ -373,7 +374,7 @@
         </div>
     </section>
 
-    <section id="venue" class="fade-in" style="background-color: var(--accent-green); color: #fff;">
+    <section id="venue" class="fade-in" style="background-color: var(--accent-color); color: #fff;">
         <h2 style="color: #fff;">Місце проведення</h2>
         <p>Ресторан «Маяк»<br>Дніпровська набережна, 2, Київ</p>
         
@@ -385,17 +386,18 @@
     <section id="dresscode" class="fade-in">
         <h2>Дрес-код</h2>
         <p>Нам головне ваша присутність, але ми будемо вдячні, якщо ви підтримаєте кольорову гаму нашого свята</p>
+        
         <div class="color-palette">
-            <div class="color-circle" style="background-color: #b9ccb3;"></div>
-            <div class="color-circle" style="background-color: #9cb36e;"></div>
-            <div class="color-circle" style="background-color: #5d6e52;"></div>
-            <div class="color-circle" style="background-color: #4a6681;"></div>
-            <div class="color-circle" style="background-color: #8bb2d8;"></div>
-            <div class="color-circle" style="background-color: #ecd9c3;"></div>
+            <div class="color-circle" style="background-color: #6B1724;"></div>
+            <div class="color-circle" style="background-color: #801424;"></div>
+            <div class="color-circle" style="background-color: #A64B58;"></div>
+            <div class="color-circle" style="background-color: #D9A0A8;"></div>
+            <div class="color-circle" style="background-color: #E6DCC8;"></div>
+            <div class="color-circle" style="background-color: #C5A059;"></div>
         </div>
     </section>
 
-    <section id="program" class="fade-in" style="background-color: var(--accent-green); color: #fff;">
+    <section id="program" class="fade-in" style="background-color: var(--accent-color); color: #fff;">
         <h2 style="color: #fff;">Програма дня</h2>
         <div class="timeline">
             <div class="timeline-item">
@@ -422,7 +424,7 @@
 
     <section id="wishes" class="fade-in">
         <h2>Побажання</h2>
-        <p>Просимо вас не дарувати нам квіти, нажаль, ми не встигнемо насолодитися їх красою.</p>
+        <p>Просимо вас не дарувати нам квіти, на жаль, ми не встигнемо насолодитися їх красою.</p>
         <br>
         <p>Приємним компліментом для нас буде, якщо ви замість квітів вирішите подарувати нам набір ваших улюблених спецій або пляшку алкогольного напою для нашої колекції, яку ми відкриємо на найближчому нашому сімейному святі.</p>
     </section>
@@ -456,7 +458,7 @@
         <div class="decor">♡</div>
         <h2>Чекаємо на вас!</h2>
         <div class="couple-illustration"></div>
-        <div class="decor">🌿</div>
+        <div class="decor">✨</div>
         <h2 style="font-size: 2.5rem;">Ярослав та Інна</h2>
         <div class="decor">♡</div>
     </section>
@@ -464,7 +466,6 @@
 </div>
 
 <script>
-    // Скрипт для плавної появи елементів при скролінгу
     document.addEventListener("DOMContentLoaded", function() {
         const faders = document.querySelectorAll('.fade-in');
 
@@ -488,7 +489,6 @@
             appearOnScroll.observe(fader);
         });
 
-        // Заглушка для відправки форми
         document.getElementById('rsvp-form').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Дякуємо! Вашу відповідь успішно відправлено.');
