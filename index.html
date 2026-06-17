@@ -1,12 +1,500 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Hello, World!</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-      <h1 class="title">Hello World!</h1>
-      <p id="currentTime"></p>
-      <script src="script.js"></script>
-  </body>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Весільне запрошення | Ярослав та Інна</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #F8F8F0;
+            --text-color: #5C6B53;
+            --accent-green: #A3B18A;
+            --btn-green: #9DAF8F;
+            --border-color: #D3D8C7;
+            --font-cursive: 'Great Vibes', cursive;
+            --font-main: 'Cormorant Garamond', serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            font-size: 18px;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Мобільний контейнер (щоб на ПК виглядало як телефон) */
+        .app-container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: var(--bg-color);
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            overflow-x: hidden;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        h1, h2 {
+            font-family: var(--font-cursive);
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 3rem; }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        /* Анімації появи при скролі */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Секція 1: Головна */
+        .hero-subtitle {
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+        .arrow-down {
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(10px);}
+            60% {transform: translateY(5px);}
+        }
+        .envelope-placeholder {
+            width: 280px;
+            height: 200px;
+            background-color: var(--accent-green);
+            border-radius: 10px;
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .wax-seal {
+            width: 60px;
+            height: 60px;
+            background-color: #F8F8F0;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-main);
+            font-size: 1.5rem;
+            color: var(--accent-green);
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.2), 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Секція 2: Історія */
+        .photos-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .photo-frame {
+            width: 120px;
+            height: 140px;
+            background: #fff;
+            padding: 5px 5px 20px 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transform: rotate(-3deg);
+        }
+        .photo-frame:nth-child(3) {
+            transform: rotate(3deg);
+        }
+        .photo-frame div {
+            width: 100%;
+            height: 100%;
+            background-color: #ddd; /* Заглушка для фото */
+        }
+
+        /* Секція 3: Запрошення */
+        .invite-card {
+            background: #fff;
+            padding: 40px 20px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Секція 4: Календар */
+        .calendar {
+            margin-top: 20px;
+            font-family: var(--font-main);
+        }
+        .days-header, .days-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .days-header { font-weight: bold; }
+        .days-grid div { padding: 5px 0; }
+        .highlight-date {
+            position: relative;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid var(--text-color);
+            border-radius: 50%;
+        }
+        .ring-icon {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1rem;
+        }
+
+        /* Секція 5: Місце */
+        .venue-img {
+            width: 100%;
+            height: 250px;
+            background-color: #ddd;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .btn-outline {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 1px solid var(--text-color);
+            border-radius: 25px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.1rem;
+            margin-top: 20px;
+            background: transparent;
+        }
+
+        /* Секція 6: Дрес-код */
+        .color-palette {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .color-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Секція 7: Програма */
+        .timeline {
+            margin-top: 30px;
+            width: 100%;
+        }
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .t-text {
+            flex: 1;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .t-text.left { text-align: right; padding-right: 20px; }
+        .t-text.right { text-align: left; padding-left: 20px; font-size: 1.5rem; font-weight: 600;}
+        .t-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        .t-icon {
+            font-size: 2rem;
+            margin: 10px 0;
+        }
+        .t-line {
+            width: 1px;
+            height: 40px;
+            background-color: var(--text-color);
+        }
+
+        /* Секція 8: Форма RSVP */
+        form {
+            width: 100%;
+            text-align: left;
+            margin-top: 20px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--text-color);
+            border-radius: 25px;
+            background: transparent;
+            font-family: var(--font-main);
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+        .radio-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+            accent-color: var(--btn-green);
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--btn-green);
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            font-family: var(--font-main);
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        /* Секція 9: Фінал */
+        .couple-illustration {
+            width: 250px;
+            height: 250px;
+            background-color: #ddd;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .decor {
+            font-size: 1.5rem;
+            color: var(--btn-green);
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+
+    <section id="hero" class="fade-in">
+        <h2>Wedding Invitation</h2>
+        <div class="hero-subtitle">ТИСНІТЬ СЮДИ</div>
+        <div class="arrow-down">↓</div>
+        
+        <div class="envelope-placeholder">
+            <div class="wax-seal">ЯІ</div>
+        </div>
+    </section>
+
+    <section id="story" class="fade-in">
+        <h2>Впізнали?</h2>
+        <div class="photos-container">
+            <div class="photo-frame"><div></div></div>
+            <div style="font-size: 1.5rem;">+</div>
+            <div class="photo-frame"><div></div></div>
+        </div>
+        <p>Маленькі ми...</p>
+        <p>Дві історії</p>
+        <p>Одне «так»</p>
+    </section>
+
+    <section id="invite" class="fade-in" style="background-color: var(--accent-green); color: var(--text-color);">
+        <div class="invite-card">
+            <h2>Любі Гості!</h2>
+            <p>Ми раді запросити вас на наше весілля — у день, сповнений любові, світла й справжніх емоцій.</p>
+            <br>
+            <p>Приєднуйтесь, щоб відсвяткувати цей особливий день разом з нами.</p>
+        </div>
+    </section>
+
+    <section id="calendar-sec" class="fade-in">
+        <h2>Липень</h2>
+        <div class="calendar">
+            <div class="days-header">
+                <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Нд</div>
+            </div>
+            <div class="days-grid">
+                <div></div><div></div><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div>
+                <div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div>
+                <div>13</div><div>14</div><div>15</div><div>16</div><div>17</div>
+                <div>
+                    <span class="highlight-date">
+                        <span class="ring-icon">💎</span>
+                        18
+                    </span>
+                </div>
+                <div>19</div>
+                <div>20</div><div>21</div><div>22</div><div>23</div><div>24</div><div>25</div><div>26</div>
+                <div>27</div><div>28</div><div>29</div><div>30</div><div>31</div><div></div><div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="venue" class="fade-in" style="background-color: var(--accent-green); color: #fff;">
+        <h2 style="color: #fff;">Місце проведення</h2>
+        <p>Ресторан «Маяк»<br>Дніпровська набережна, 2, Київ</p>
+        
+        <div class="venue-img"></div>
+        
+        <a href="#" class="btn-outline" style="color: #fff; border-color: #fff;">Подивитись на мапі</a>
+    </section>
+
+    <section id="dresscode" class="fade-in">
+        <h2>Дрес-код</h2>
+        <p>Нам головне ваша присутність, але ми будемо вдячні, якщо ви підтримаєте кольорову гаму нашого свята</p>
+        <div class="color-palette">
+            <div class="color-circle" style="background-color: #b9ccb3;"></div>
+            <div class="color-circle" style="background-color: #9cb36e;"></div>
+            <div class="color-circle" style="background-color: #5d6e52;"></div>
+            <div class="color-circle" style="background-color: #4a6681;"></div>
+            <div class="color-circle" style="background-color: #8bb2d8;"></div>
+            <div class="color-circle" style="background-color: #ecd9c3;"></div>
+        </div>
+    </section>
+
+    <section id="program" class="fade-in" style="background-color: var(--accent-green); color: #fff;">
+        <h2 style="color: #fff;">Програма дня</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="t-text left">ЗУСТРІЧ<br>ГОСТЕЙ</div>
+                <div class="t-center">
+                    <div class="t-line"></div>
+                    <div class="t-icon">🥂</div>
+                    <div class="t-line"></div>
+                </div>
+                <div class="t-text right">14:00</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="t-text left">ЦЕРЕМОНІЯ</div>
+                <div class="t-center">
+                    <div class="t-line"></div>
+                    <div class="t-icon">💍</div>
+                    <div class="t-line"></div>
+                </div>
+                <div class="t-text right">15:00</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="wishes" class="fade-in">
+        <h2>Побажання</h2>
+        <p>Просимо вас не дарувати нам квіти, нажаль, ми не встигнемо насолодитися їх красою.</p>
+        <br>
+        <p>Приємним компліментом для нас буде, якщо ви замість квітів вирішите подарувати нам набір ваших улюблених спецій або пляшку алкогольного напою для нашої колекції, яку ми відкриємо на найближчому нашому сімейному святі.</p>
+    </section>
+
+    <section id="rsvp" class="fade-in">
+        <h2>Підтвердження присутності</h2>
+        <form id="rsvp-form">
+            <div class="input-group">
+                <input type="text" placeholder="Ваше ім'я та прізвище" required>
+            </div>
+            
+            <p style="margin-top: 30px; font-weight: bold;">Чи плануєте ви бути на весіллі?</p>
+            <div class="radio-group">
+                <label><input type="radio" name="attendance" value="yes"> Так, із задоволенням!</label>
+                <label><input type="radio" name="attendance" value="no"> На жаль, не зможу</label>
+            </div>
+
+            <p style="margin-top: 30px; font-weight: bold;">Вкажіть, будь ласка, ваші побажання по алкогольним напоям:</p>
+            <div class="radio-group">
+                <label><input type="radio" name="alcohol" value="vodka"> Горілка</label>
+                <label><input type="radio" name="alcohol" value="cognac"> Коньяк</label>
+                <label><input type="radio" name="alcohol" value="champagne"> Шампанське</label>
+                <label><input type="radio" name="alcohol" value="wine"> Вино</label>
+            </div>
+
+            <button type="submit">ВІДПРАВИТИ</button>
+        </form>
+    </section>
+
+    <section id="footer" class="fade-in">
+        <div class="decor">♡</div>
+        <h2>Чекаємо на вас!</h2>
+        <div class="couple-illustration"></div>
+        <div class="decor">🌿</div>
+        <h2 style="font-size: 2.5rem;">Ярослав та Інна</h2>
+        <div class="decor">♡</div>
+    </section>
+
+</div>
+
+<script>
+    // Скрипт для плавної появи елементів при скролінгу
+    document.addEventListener("DOMContentLoaded", function() {
+        const faders = document.querySelectorAll('.fade-in');
+
+        const appearOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        // Заглушка для відправки форми
+        document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Дякуємо! Вашу відповідь успішно відправлено.');
+        });
+    });
+</script>
+
+</body>
 </html>
