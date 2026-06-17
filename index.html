@@ -9,16 +9,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #FAF6EE;       
-            --text-color: #4A121A;     
-            --accent-color: #6B1724;   
-            --btn-color: #801424;      
-            --border-color: #E6DCC8;   
+            --bg-color: #FAF6EE;       /* Гармонійний відтінок Ivory (слонова кістка) */
+            --text-color: #4A121A;     /* Глибокий винний колір для тексту */
+            --accent-color: #6B1724;   /* Благородний Burgundy для акцентних блоків */
+            --btn-color: #801424;      /* Насичений бордовий для кнопок та активних елементів */
+            --border-color: #E6DCC8;   /* М'який пастельний колір для меж та ліній */
             --font-cursive: 'Great Vibes', cursive;
             --font-main: 'Cormorant Garamond', serif;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
             background-color: var(--bg-color);
@@ -29,6 +33,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Мобільний контейнер (щоб на ПК виглядало як телефон) */
         .app-container {
             max-width: 480px;
             margin: 0 auto;
@@ -49,98 +54,385 @@
             position: relative;
         }
 
+        /* Стиль для темних блоків з плавним рваним паперовим переходом як на image_97823b.png */
         .dark-section {
             background-color: var(--accent-color);
             color: #fff;
-            padding: 95px 20px;
+            padding: 90px 20px;
             position: relative;
         }
         
+        /* Верхній плавний паперовий край */
         .dark-section::before {
             content: "";
             position: absolute;
             top: -24px; left: 0; right: 0;
-            height: 26px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,120 C60,90 130,105 190,85 C250,65 310,80 370,88 C430,96 490,75 550,62 C610,49 670,82 730,78 C790,74 850,58 910,67 C970,76 1030,92 1090,78 C1150,64 1175,72 1200,62 L1200,120 Z' fill='%236B1724'/%3E%3C/svg%3E");
+            height: 25px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,120 Q35,55 75,75 T160,45 T270,85 T400,35 T530,70 T660,30 T790,80 T920,40 T1050,65 T1140,35 T1200,85 L1200,120 Z' fill='%236B1724'/%3E%3C/svg%3E");
             background-size: 100% 100%;
             z-index: 10;
         }
 
+        /* Нижній плавний паперовий край */
         .dark-section::after {
             content: "";
             position: absolute;
             bottom: -24px; left: 0; right: 0;
-            height: 26px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C60,30 130,15 190,35 C250,55 310,40 370,32 C430,24 490,45 550,58 C610,71 670,38 730,42 C790,46 850,62 910,53 C970,44 1030,28 1090,42 C1150,56 1175,48 1200,38 L1200,0 Z' fill='%236B1724'/%3E%3C/svg%3E");
+            height: 25px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0 Q35,65 75,45 T160,75 T270,35 T400,85 T530,50 T660,90 T790,40 T920,80 T1050,55 T1140,85 T1200,35 L1200,0 Z' fill='%236B1724'/%3E%3C/svg%3E");
             background-size: 100% 100%;
             z-index: 10;
         }
 
-        .dark-section h2, .dark-section p { color: #fff; }
+        .dark-section h2, .dark-section p {
+            color: #fff;
+        }
 
-        h1, h2 { font-family: var(--font-cursive); font-weight: 400; margin-bottom: 20px; color: var(--text-color); }
-        h1 { font-size: 3.5rem; } h2 { font-size: 3rem; }
-        p { margin-bottom: 15px; font-size: 1.2rem; }
+        h1, h2 {
+            font-family: var(--font-cursive);
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
 
-        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 3rem; }
 
-        .hero-subtitle { font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 20px; margin-bottom: 5px; }
-        .arrow-down { font-size: 1.5rem; animation: bounce 2s infinite; }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(10px);} 60% {transform: translateY(5px);} }
-        
-        .envelope-placeholder { width: 280px; height: 200px; background-color: var(--accent-color); border-radius: 10px; margin-top: 40px; display: flex; justify-content: center; align-items: center; position: relative; box-shadow: 0 10px 20px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.3s ease; }
-        .envelope-placeholder:hover { transform: scale(1.02); }
-        .wax-seal { width: 60px; height: 60px; background-color: var(--bg-color); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-family: var(--font-main); font-size: 1.5rem; color: var(--accent-color); box-shadow: inset 0 0 5px rgba(0,0,0,0.2), 0 2px 5px rgba(0,0,0,0.2); pointer-events: none; }
+        p {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
 
-        .photos-container { display: flex; align-items: center; justify-content: center; gap: 15px; margin: 30px 0; }
-        .photo-frame { width: 120px; height: 140px; background: #fff; padding: 5px 5px 20px 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: rotate(-3deg); }
-        .photo-frame:nth-child(3) { transform: rotate(3deg); }
-        .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+        /* Анімації появи при скролі */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-        .section-envelope { padding: 50px 0; }
-        .open-envelope { position: relative; width: 100%; margin-top: 80px; padding-top: 90px; padding-bottom: 0px; }
-        .env-back { position: absolute; top: 90px; bottom: 0; left: 0; right: 0; background-color: #5a101d; z-index: 1; }
-        .env-flap-top { position: absolute; top: 90px; left: 0; right: 0; height: 40%; background-color: #731826; z-index: 1; clip-path: polygon(0 0, 100% 0, 50% 100%); opacity: 0.8; }
-        .env-letter { background: #fff; color: var(--text-color); width: 90%; margin: 0 auto; padding: 35px 25px; position: relative; z-index: 2; box-shadow: 0 -5px 15px rgba(0,0,0,0.1); border-radius: 4px; transform: translateY(-90px); }
-        .env-front { position: absolute; bottom: 0; left: 0; right: 0; height: 50%; background-color: var(--accent-color); z-index: 3; clip-path: polygon(0 100%, 100% 100%, 100% 0, 50% 35%, 0 0); }
+        /* Секція 1: Головна */
+        .hero-subtitle {
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+        .arrow-down {
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(10px);}
+            60% {transform: translateY(5px);}
+        }
+        .envelope-placeholder {
+            width: 280px;
+            height: 200px;
+            background-color: var(--accent-color);
+            border-radius: 10px;
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .wax-seal {
+            width: 60px;
+            height: 60px;
+            background-color: var(--bg-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-main);
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.2), 0 2px 5px rgba(0,0,0,0.2);
+        }
 
-        .calendar { margin-top: 20px; font-family: var(--font-main); width: 100%; max-width: 320px; }
-        .days-header, .days-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; text-align: center; margin-bottom: 10px; }
+        /* Секція 2: Історія */
+        .photos-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .photo-frame {
+            width: 120px;
+            height: 140px;
+            background: #fff;
+            padding: 5px 5px 20px 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transform: rotate(-3deg);
+        }
+        .photo-frame:nth-child(3) {
+            transform: rotate(3deg);
+        }
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Секція 3: Конверт на всю ширину сторінки */
+        .section-envelope {
+            padding: 50px 0; /* Прибрали бічні паддінги для розтягування */
+        }
+        .open-envelope {
+            position: relative;
+            width: 100%;
+            margin-top: 80px;
+            padding-top: 90px; 
+            padding-bottom: 0px;
+        }
+        .env-back {
+            position: absolute;
+            top: 90px; bottom: 0; left: 0; right: 0;
+            background-color: #5a101d;
+            z-index: 1;
+        }
+        .env-flap-top {
+            position: absolute;
+            top: 90px; left: 0; right: 0;
+            height: 40%;
+            background-color: #731826;
+            z-index: 1;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            opacity: 0.8;
+        }
+        .env-letter {
+            background: #fff;
+            color: var(--text-color);
+            width: 90%;
+            margin: 0 auto;
+            padding: 35px 25px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            transform: translateY(-90px); /* Витягнуто вище, щоб текст було повністю видно */
+        }
+        .env-front {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 50%; /* Оптимальна висота, аби не перекривати лист */
+            background-color: var(--accent-color);
+            z-index: 3;
+            clip-path: polygon(0 100%, 100% 100%, 100% 0, 50% 35%, 0 0);
+        }
+
+        /* Секція 4: Календар */
+        .calendar {
+            margin-top: 20px;
+            font-family: var(--font-main);
+            width: 100%;
+            max-width: 320px;
+        }
+        .days-header, .days-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
         .days-header { font-weight: bold; }
-        .days-grid div { padding: 5px 0; display: flex; justify-content: center; align-items: center; }
-        .highlight-date { position: relative; display: inline-block; width: 38px; height: 38px; line-height: 34px; color: var(--text-color); font-weight: 600; border: 2px solid var(--accent-color); border-radius: 48% 53% 50% 55% / 52% 49% 53% 47%; overflow: hidden; }
-        .highlight-date::after { content: ''; position: absolute; top: -50%; left: -60%; width: 35%; height: 200%; background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%); transform: rotate(30deg); animation: lightShimmer 3.5s infinite linear; }
-        @keyframes lightShimmer { 0% { left: -70%; } 25% { left: 130%; } 100% { left: 130%; } }
-
-        .venue-img-container { width: 100%; height: 390px; margin: 25px 0; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
-        .venue-img-container img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+        .days-grid div { 
+            padding: 5px 0; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         
-        .btn-outline { display: inline-block; padding: 12px 30px; border: 1px solid #fff; border-radius: 25px; text-decoration: none; color: #fff; font-size: 1.1rem; margin-top: 20px; background: transparent; transition: background 0.3s, color 0.3s; }
-        .btn-outline:hover { background: #fff; color: var(--accent-color); }
+        /* Неідеальне коло з ефектом блиску */
+        .highlight-date {
+            position: relative;
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            line-height: 32px;
+            color: var(--text-color);
+            font-weight: 600;
+            border: 2px solid var(--accent-color);
+            /* Створення ефекту неідеального кола від руки */
+            border-radius: 48% 53% 50% 55% / 52% 49% 53% 47%;
+            overflow: hidden;
+        }
+        
+        /* Ефект легкого глянцевого блиску */
+        .highlight-date::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -60%;
+            width: 30%;
+            height: 200%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(30deg);
+            animation: lightShimmer 3s infinite linear;
+        }
 
-        .color-palette { display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; margin-top: 30px; max-width: 340px; }
-        .color-circle { width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 3px 6px rgba(0,0,0,0.1); position: relative; }
-        .color-circle::after { content: attr(data-name); position: absolute; bottom: -22px; left: 50%; transform: translateX(-50%); font-size: 0.8rem; white-space: nowrap; color: var(--text-color); font-weight: 600; }
+        @keyframes lightShimmer {
+            0% { left: -70%; }
+            30% { left: 130%; }
+            100% { left: 130%; }
+        }
 
-        .timeline { margin-top: 30px; width: 100%; }
-        .timeline-item { display: flex; align-items: center; justify-content: center; margin-bottom: 30px; }
-        .t-text { flex: 1; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
+        /* Секція 5: Місце */
+        .venue-img {
+            width: 100%;
+            height: 250px;
+            background-color: #ddd;
+            background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80');
+            background-size: cover;
+            background-position: center;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .btn-outline {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 1px solid #fff;
+            border-radius: 25px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            background: transparent;
+            transition: background 0.3s, color 0.3s;
+        }
+        .btn-outline:hover {
+            background: #fff;
+            color: var(--accent-color);
+        }
+
+        /* Секція 6: Дрес-код */
+        .color-palette {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 30px;
+            max-width: 340px;
+        }
+        .color-circle {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .color-circle::after {
+            content: attr(data-name);
+            position: absolute;
+            bottom: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            white-space: nowrap;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        /* Секція 7: Програма */
+        .timeline {
+            margin-top: 30px;
+            width: 100%;
+        }
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .t-text {
+            flex: 1;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
         .t-text.left { text-align: right; padding-right: 20px; }
         .t-text.right { text-align: left; padding-left: 20px; font-size: 1.5rem; font-weight: 600;}
-        .t-center { display: flex; flex-direction: column; align-items: center; position: relative; }
-        .t-icon { font-size: 2rem; margin: 10px 0; }
-        .t-line { width: 1px; height: 40px; background-color: #fff; }
+        .t-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        .t-icon {
+            font-size: 2rem;
+            margin: 10px 0;
+        }
+        .t-line {
+            width: 1px;
+            height: 40px;
+            background-color: #fff;
+        }
 
-        form { width: 100%; text-align: left; margin-top: 20px; }
-        .input-group { margin-bottom: 20px; }
-        input[type="text"] { width: 100%; padding: 15px; border: 1px solid var(--text-color); border-radius: 25px; background: transparent; font-family: var(--font-main); font-size: 1.1rem; color: var(--text-color); }
-        .radio-group label { display: block; margin-bottom: 10px; font-size: 1.2rem; cursor: pointer; }
-        input[type="radio"] { margin-right: 10px; accent-color: var(--btn-color); }
-        button[type="submit"] { width: 100%; padding: 15px; background-color: var(--btn-color); color: #fff; border: none; border-radius: 25px; font-family: var(--font-main); font-size: 1.2rem; letter-spacing: 1px; margin-top: 20px; cursor: pointer; }
+        /* Секція 8: Форма RSVP */
+        form {
+            width: 100%;
+            text-align: left;
+            margin-top: 20px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--text-color);
+            border-radius: 25px;
+            background: transparent;
+            font-family: var(--font-main);
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+        .radio-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+            accent-color: var(--btn-color);
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--btn-color);
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            font-family: var(--font-main);
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
 
-        .couple-card-container { width: 100%; display: flex; justify-content: center; align-items: center; padding: 10px 0; }
-        .couple-illustration img { width: 100%; max-width: 380px; height: auto; border-radius: 10px; display: block; }
+        /* Секція 9: Фінал */
+        .couple-illustration {
+            width: 250px;
+            height: 250px;
+            background-image: url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=400&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            margin: 30px 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .decor {
+            font-size: 1.5rem;
+            color: var(--btn-color);
+        }
     </style>
 </head>
 <body>
@@ -152,7 +444,7 @@
         <div class="hero-subtitle">ТИСНІТЬ СЮДИ</div>
         <div class="arrow-down">↓</div>
         
-        <div class="envelope-placeholder" onclick="document.getElementById('story').scrollIntoView({ behavior: 'smooth' });">
+        <div class="envelope-placeholder">
             <div class="wax-seal">ОВ</div>
         </div>
     </section>
@@ -173,6 +465,7 @@
         <p>Одне «так»</p>
     </section>
 
+    <!-- Секція з конвертом розтягнута на всю ширину екрану -->
     <section id="invite" class="fade-in section-envelope">
         <div class="open-envelope">
             <div class="env-back"></div>
@@ -199,6 +492,7 @@
                 <div>17</div><div>18</div><div>19</div><div>20</div><div>21</div><div>22</div><div>23</div>
                 <div>24</div><div>25</div><div>26</div><div>27</div>
                 <div>
+                    <!-- Оновлена дата з неідеальним колом та ефектом блиску -->
                     <span class="highlight-date">28</span>
                 </div>
                 <div>29</div><div>30</div>
@@ -207,21 +501,21 @@
         </div>
     </section>
 
+    <!-- Темна секція з рваними краями в стилі image_97823b.png -->
     <section id="venue" class="fade-in dark-section">
         <h2>Місце проведення</h2>
         <p>«Forest Park»<br>с. Пониковиця, Львівська область</p>
         
-        <div class="venue-img-container">
-            <img src="ForestPark.png" alt="Локація Forest Park">
-        </div>
+        <div class="venue-img"></div>
         
-        <a href="https://maps.app.goo.gl/e8PBa57pZh5xeCM87" target="_blank" class="btn-outline">Подивитись на мапі</a>
+        <a href="https://maps.app.goo.gl/uUzXosKcuNMk1ebC9" target="_blank" class="btn-outline">Подивитись на мапі</a>
     </section>
 
     <section id="dresscode" class="fade-in">
         <h2>Дрес-код</h2>
         <p>Нам головне ваша присутність, але ми будемо вдячні, якщо ви підтримаєте кольорову гаму нашого свята</p>
         
+        <!-- Оновлена палітра з 5 кольорів -->
         <div class="color-palette">
             <div class="color-circle" style="background-color: #8A9A86;" data-name="Sage Green"></div>
             <div class="color-circle" style="background-color: #F4E3CB;" data-name="Champagne"></div>
@@ -231,8 +525,9 @@
         </div>
     </section>
 
+    <!-- Темна секція з рваними краями в стилі image_97823b.png -->
     <section id="program" class="fade-in dark-section">
-        <h2>Program дня</h2>
+        <h2>Програма дня</h2>
         <div class="timeline">
             <div class="timeline-item">
                 <div class="t-text left">ЗУСТРІЧ<br>ГОСТЕЙ</div>
@@ -281,11 +576,12 @@
     </section>
 
     <section id="footer" class="fade-in">
-        <div class="couple-card-container">
-            <div class="couple-illustration">
-                <img src="ViktoriiaOlehScatch.png" alt="Вікторія та Олег">
-            </div>
-        </div>
+        <div class="decor">♡</div>
+        <h2>Чекаємо на вас!</h2>
+        <div class="couple-illustration"></div>
+        <div class="decor">✨</div>
+        <h2 style="font-size: 2.5rem;">Олег та Вікторія</h2>
+        <div class="decor">♡</div>
     </section>
 
 </div>
@@ -293,15 +589,27 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const faders = document.querySelectorAll('.fade-in');
-        const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+
+        const appearOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
         const appearOnScroll = new IntersectionObserver(function(entries, observer) {
             entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
             });
         }, appearOptions);
-        faders.forEach(fader => appearOnScroll.observe(fader));
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
         document.getElementById('rsvp-form').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Дякуємо! Вашу відповідь успішно відправлено.');
