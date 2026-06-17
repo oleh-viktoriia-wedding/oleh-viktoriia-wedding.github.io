@@ -54,33 +54,34 @@
             position: relative;
         }
 
-        /* Стиль для темних блоків із рваними краями */
+        /* Стиль для темних блоків з плавним рваним паперовим переходом як на image_97823b.png */
         .dark-section {
             background-color: var(--accent-color);
             color: #fff;
-            padding: 80px 20px;
+            padding: 90px 20px;
+            position: relative;
         }
         
-        .dark-section::before,
+        /* Верхній плавний паперовий край */
+        .dark-section::before {
+            content: "";
+            position: absolute;
+            top: -24px; left: 0; right: 0;
+            height: 25px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,120 Q35,55 75,75 T160,45 T270,85 T400,35 T530,70 T660,30 T790,80 T920,40 T1050,65 T1140,35 T1200,85 L1200,120 Z' fill='%236B1724'/%3E%3C/svg%3E");
+            background-size: 100% 100%;
+            z-index: 10;
+        }
+
+        /* Нижній плавний паперовий край */
         .dark-section::after {
             content: "";
             position: absolute;
-            left: 0; right: 0;
-            height: 15px;
-            background-color: var(--bg-color);
+            bottom: -24px; left: 0; right: 0;
+            height: 25px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0 Q35,65 75,45 T160,75 T270,35 T400,85 T530,50 T660,90 T790,40 T920,80 T1050,55 T1140,85 T1200,35 L1200,0 Z' fill='%236B1724'/%3E%3C/svg%3E");
+            background-size: 100% 100%;
             z-index: 10;
-        }
-        
-        /* Рваний край зверху */
-        .dark-section::before {
-            top: -1px;
-            clip-path: polygon(0% 0%, 2% 100%, 4% 0%, 6% 100%, 8% 0%, 10% 100%, 12% 0%, 14% 100%, 16% 0%, 18% 100%, 20% 0%, 22% 100%, 24% 0%, 26% 100%, 28% 0%, 30% 100%, 32% 0%, 34% 100%, 36% 0%, 38% 100%, 40% 0%, 42% 100%, 44% 0%, 46% 100%, 48% 0%, 50% 100%, 52% 0%, 54% 100%, 56% 0%, 58% 100%, 60% 0%, 62% 100%, 64% 0%, 66% 100%, 68% 0%, 70% 100%, 72% 0%, 74% 100%, 76% 0%, 78% 100%, 80% 0%, 82% 100%, 84% 0%, 86% 100%, 88% 0%, 90% 100%, 92% 0%, 94% 100%, 96% 0%, 98% 100%, 100% 0%);
-        }
-
-        /* Рваний край знизу */
-        .dark-section::after {
-            bottom: -1px;
-            clip-path: polygon(0% 100%, 2% 0%, 4% 100%, 6% 0%, 8% 100%, 10% 0%, 12% 100%, 14% 0%, 16% 100%, 18% 0%, 20% 100%, 22% 0%, 24% 100%, 26% 0%, 28% 100%, 30% 0%, 32% 100%, 34% 0%, 36% 100%, 38% 0%, 40% 100%, 42% 0%, 44% 100%, 46% 0%, 48% 100%, 50% 0%, 52% 100%, 54% 0%, 56% 100%, 58% 0%, 60% 100%, 62% 0%, 64% 100%, 66% 0%, 68% 100%, 70% 0%, 72% 100%, 74% 0%, 76% 100%, 78% 0%, 80% 100%, 82% 0%, 84% 100%, 86% 0%, 88% 100%, 90% 0%, 92% 100%, 94% 0%, 96% 100%, 98% 0%, 100% 100%);
         }
 
         .dark-section h2, .dark-section p {
@@ -181,20 +182,21 @@
             object-fit: cover;
         }
 
-        /* Секція 3: Відкритий конверт із запрошенням */
+        /* Секція 3: Конверт на всю ширину сторінки */
+        .section-envelope {
+            padding: 50px 0; /* Прибрали бічні паддінги для розтягування */
+        }
         .open-envelope {
             position: relative;
             width: 100%;
-            max-width: 380px;
-            margin: 40px auto 20px auto;
-            padding-top: 90px; /* Додали простору зверху для висунутого листа */
-            padding-bottom: 20px;
+            margin-top: 80px;
+            padding-top: 90px; 
+            padding-bottom: 0px;
         }
         .env-back {
             position: absolute;
             top: 90px; bottom: 0; left: 0; right: 0;
-            background-color: #5a101d; /* Темніший бордовий для глибини */
-            border-radius: 5px;
+            background-color: #5a101d;
             z-index: 1;
         }
         .env-flap-top {
@@ -209,23 +211,22 @@
         .env-letter {
             background: #fff;
             color: var(--text-color);
-            width: 88%;
+            width: 90%;
             margin: 0 auto;
-            padding: 30px 20px;
+            padding: 35px 25px;
             position: relative;
             z-index: 2;
-            box-shadow: 0 0 15px rgba(0,0,0,0.15);
-            border-radius: 3px;
-            transform: translateY(-80px); /* Витягнули лист значно вище */
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            transform: translateY(-90px); /* Витягнуто вище, щоб текст було повністю видно */
         }
         .env-front {
             position: absolute;
             bottom: 0; left: 0; right: 0;
-            height: 55%; /* Трохи зменшили висоту передньої стінки, щоб відкрити більше тексту */
+            height: 50%; /* Оптимальна висота, аби не перекривати лист */
             background-color: var(--accent-color);
             z-index: 3;
             clip-path: polygon(0 100%, 100% 100%, 100% 0, 50% 35%, 0 0);
-            border-radius: 0 0 5px 5px;
         }
 
         /* Секція 4: Календар */
@@ -243,24 +244,44 @@
             margin-bottom: 10px;
         }
         .days-header { font-weight: bold; }
-        .days-grid div { padding: 5px 0; }
+        .days-grid div { 
+            padding: 5px 0; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Неідеальне коло з ефектом блиску */
         .highlight-date {
             position: relative;
             display: inline-block;
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
-            border: 1px solid var(--accent-color);
-            border-radius: 50%;
-            background-color: var(--accent-color);
-            color: #fff;
+            width: 36px;
+            height: 36px;
+            line-height: 32px;
+            color: var(--text-color);
+            font-weight: 600;
+            border: 2px solid var(--accent-color);
+            /* Створення ефекту неідеального кола від руки */
+            border-radius: 48% 53% 50% 55% / 52% 49% 53% 47%;
+            overflow: hidden;
         }
-        .ring-icon {
+        
+        /* Ефект легкого глянцевого блиску */
+        .highlight-date::after {
+            content: '';
             position: absolute;
-            top: -18px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 1.2rem;
+            top: -50%; left: -60%;
+            width: 30%;
+            height: 200%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(30deg);
+            animation: lightShimmer 3s infinite linear;
+        }
+
+        @keyframes lightShimmer {
+            0% { left: -70%; }
+            30% { left: 130%; }
+            100% { left: 130%; }
         }
 
         /* Секція 5: Місце */
@@ -296,26 +317,27 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 25px;
             margin-top: 30px;
+            max-width: 340px;
         }
         .color-circle {
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
             position: relative;
         }
         .color-circle::after {
             content: attr(data-name);
             position: absolute;
-            bottom: -20px;
+            bottom: -22px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             white-space: nowrap;
             color: var(--text-color);
-            opacity: 0.8;
+            font-weight: 600;
         }
 
         /* Секція 7: Програма */
@@ -443,8 +465,8 @@
         <p>Одне «так»</p>
     </section>
 
-    <!-- Сторінка з відкритим конвертом (лист висунуто вище) -->
-    <section id="invite" class="fade-in">
+    <!-- Секція з конвертом розтягнута на всю ширину екрану -->
+    <section id="invite" class="fade-in section-envelope">
         <div class="open-envelope">
             <div class="env-back"></div>
             <div class="env-flap-top"></div>
@@ -470,10 +492,8 @@
                 <div>17</div><div>18</div><div>19</div><div>20</div><div>21</div><div>22</div><div>23</div>
                 <div>24</div><div>25</div><div>26</div><div>27</div>
                 <div>
-                    <span class="highlight-date">
-                        <span class="ring-icon">💎</span>
-                        28
-                    </span>
+                    <!-- Оновлена дата з неідеальним колом та ефектом блиску -->
+                    <span class="highlight-date">28</span>
                 </div>
                 <div>29</div><div>30</div>
                 <div>31</div><div></div><div></div><div></div><div></div><div></div><div></div>
@@ -481,6 +501,7 @@
         </div>
     </section>
 
+    <!-- Темна секція з рваними краями в стилі image_97823b.png -->
     <section id="venue" class="fade-in dark-section">
         <h2>Місце проведення</h2>
         <p>«Forest Park»<br>с. Пониковиця, Львівська область</p>
@@ -494,18 +515,17 @@
         <h2>Дрес-код</h2>
         <p>Нам головне ваша присутність, але ми будемо вдячні, якщо ви підтримаєте кольорову гаму нашого свята</p>
         
+        <!-- Оновлена палітра з 5 кольорів -->
         <div class="color-palette">
-            <div class="color-circle" style="background-color: #FAF6EE; border: 1px solid #ddd;" data-name="Ivory"></div>
-            <div class="color-circle" style="background-color: #F5F5DC;" data-name="Беж"></div>
-            <div class="color-circle" style="background-color: #202A44;" data-name="Navy"></div>
-            <div class="color-circle" style="background-color: #4A4A4A;" data-name="Графітовий"></div>
-            <div class="color-circle" style="background-color: #4E342E;" data-name="Шоколадний"></div>
-            <div class="color-circle" style="background-color: #8B8589;" data-name="Taupe"></div>
-            <div class="color-circle" style="background-color: #9DC183;" data-name="Sage Green"></div>
-            <div class="color-circle" style="background-color: #C08A8A;" data-name="Dusty Rose"></div>
+            <div class="color-circle" style="background-color: #8A9A86;" data-name="Sage Green"></div>
+            <div class="color-circle" style="background-color: #F4E3CB;" data-name="Champagne"></div>
+            <div class="color-circle" style="background-color: #AF9F90;" data-name="Taupe"></div>
+            <div class="color-circle" style="background-color: #C98A86;" data-name="Dusty Rose"></div>
+            <div class="color-circle" style="background-color: #A38391;" data-name="Mauve"></div>
         </div>
     </section>
 
+    <!-- Темна секція з рваними краями в стилі image_97823b.png -->
     <section id="program" class="fade-in dark-section">
         <h2>Програма дня</h2>
         <div class="timeline">
@@ -535,7 +555,7 @@
         <h2>Побажання</h2>
         <p>Просимо вас не дарувати нам квіти, на жаль, ми не встигнемо насолодитися їх красою.</p>
         <br>
-        <p>Приємним компліментом для нас буде, якщо ви замість квітів вирішите подарувати нам набір ваших улюблених спецій або пляшку алкогольного напою для нашої колекції, яку ми відкриємо на найближчому нашому сімейному святі.</p>
+        <p>Приємним компліментом для нас буде, якщо ви замість квітів вирішите подарувати нам набір ваших улюблених спецій або пляшку алкогольного напою для нашої колекції.</p>
     </section>
 
     <section id="rsvp" class="fade-in">
@@ -549,14 +569,6 @@
             <div class="radio-group">
                 <label><input type="radio" name="attendance" value="yes"> Так, із задоволенням!</label>
                 <label><input type="radio" name="attendance" value="no"> На жаль, не зможу</label>
-            </div>
-
-            <p style="margin-top: 30px; font-weight: bold;">Вкажіть, будь ласка, ваші побажання по алкогольним напоям:</p>
-            <div class="radio-group">
-                <label><input type="radio" name="alcohol" value="vodka"> Горілка</label>
-                <label><input type="radio" name="alcohol" value="cognac"> Коньяк</label>
-                <label><input type="radio" name="alcohol" value="champagne"> Шампанське</label>
-                <label><input type="radio" name="alcohol" value="wine"> Вино</label>
             </div>
 
             <button type="submit">ВІДПРАВИТИ</button>
