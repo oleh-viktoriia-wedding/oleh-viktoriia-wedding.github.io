@@ -56,53 +56,102 @@
             position: relative;
         }
         
-        .dark-section::before, .dark-section::after { content: ""; position: absolute; left: 0; right: 0; height: 26px; background-size: 100% 100%; z-index: 10; }
-        .dark-section::before { top: -24px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,120 C60,90 130,105 190,85 C250,65 310,80 370,88 C430,96 490,75 550,62 C610,49 670,82 730,78 C790,74 850,58 910,67 C970,76 1030,92 1090,78 C1150,64 1175,72 1200,62 L1200,120 Z' fill='%236B1724'/%3E%3C/svg%3E"); }
-        .dark-section::after { bottom: -24px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C60,30 130,15 190,35 C250,55 310,40 370,32 C430,24 490,45 550,58 C610,71 670,38 730,42 C790,46 850,62 910,53 C970,44 1030,28 1090,42 C1150,56 1175,48 1200,38 L1200,0 Z' fill='%236B1724'/%3E%3C/svg%3E"); }
+        .dark-section::before {
+            content: "";
+            position: absolute;
+            top: -24px; left: 0; right: 0;
+            height: 26px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,120 C60,90 130,105 190,85 C250,65 310,80 370,88 C430,96 490,75 550,62 C610,49 670,82 730,78 C790,74 850,58 910,67 C970,76 1030,92 1090,78 C1150,64 1175,72 1200,62 L1200,120 Z' fill='%236B1724'/%3E%3C/svg%3E");
+            background-size: 100% 100%;
+            z-index: 10;
+        }
+
+        .dark-section::after {
+            content: "";
+            position: absolute;
+            bottom: -24px; left: 0; right: 0;
+            height: 26px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C60,30 130,15 190,35 C250,55 310,40 370,32 C430,24 490,45 550,58 C610,71 670,38 730,42 C790,46 850,62 910,53 C970,44 1030,28 1090,42 C1150,56 1175,48 1200,38 L1200,0 Z' fill='%236B1724'/%3E%3C/svg%3E");
+            background-size: 100% 100%;
+            z-index: 10;
+        }
 
         .dark-section h2, .dark-section p { color: #fff; }
 
         h1, h2 { font-family: var(--font-cursive); font-weight: 400; margin-bottom: 20px; color: var(--text-color); }
         h1 { font-size: 3.5rem; } h2 { font-size: 3rem; }
-
         p { margin-bottom: 15px; font-size: 1.2rem; }
 
         .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        .envelope-placeholder { width: 280px; height: 200px; background-color: var(--accent-color); border-radius: 10px; margin-top: 40px; display: flex; justify-content: center; align-items: center; cursor: pointer; }
-        .wax-seal { width: 60px; height: 60px; background-color: var(--bg-color); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-family: var(--font-main); font-size: 1.5rem; color: var(--accent-color); }
+        .hero-subtitle { font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 20px; margin-bottom: 5px; }
+        .arrow-down { font-size: 1.5rem; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(10px);} 60% {transform: translateY(5px);} }
+        
+        .envelope-placeholder { width: 280px; height: 200px; background-color: var(--accent-color); border-radius: 10px; margin-top: 40px; display: flex; justify-content: center; align-items: center; position: relative; box-shadow: 0 10px 20px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.3s ease; }
+        .envelope-placeholder:hover { transform: scale(1.02); }
+        .wax-seal { width: 60px; height: 60px; background-color: var(--bg-color); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-family: var(--font-main); font-size: 1.5rem; color: var(--accent-color); box-shadow: inset 0 0 5px rgba(0,0,0,0.2), 0 2px 5px rgba(0,0,0,0.2); pointer-events: none; }
 
+        .photos-container { display: flex; align-items: center; justify-content: center; gap: 15px; margin: 30px 0; }
         .photo-frame { width: 120px; height: 140px; background: #fff; padding: 5px 5px 20px 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: rotate(-3deg); }
+        .photo-frame:nth-child(3) { transform: rotate(3deg); }
         .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
 
-        .env-letter { background: #fff; padding: 35px 25px; box-shadow: 0 -5px 15px rgba(0,0,0,0.1); border-radius: 4px; transform: translateY(-90px); }
+        .section-envelope { padding: 50px 0; }
+        .open-envelope { position: relative; width: 100%; margin-top: 80px; padding-top: 90px; padding-bottom: 0px; }
+        .env-back { position: absolute; top: 90px; bottom: 0; left: 0; right: 0; background-color: #5a101d; z-index: 1; }
+        .env-flap-top { position: absolute; top: 90px; left: 0; right: 0; height: 40%; background-color: #731826; z-index: 1; clip-path: polygon(0 0, 100% 0, 50% 100%); opacity: 0.8; }
+        .env-letter { background: #fff; color: var(--text-color); width: 90%; margin: 0 auto; padding: 35px 25px; position: relative; z-index: 2; box-shadow: 0 -5px 15px rgba(0,0,0,0.1); border-radius: 4px; transform: translateY(-90px); }
+        .env-front { position: absolute; bottom: 0; left: 0; right: 0; height: 50%; background-color: var(--accent-color); z-index: 3; clip-path: polygon(0 100%, 100% 100%, 100% 0, 50% 35%, 0 0); }
 
-        .calendar { margin-top: 20px; width: 100%; max-width: 320px; }
-        .days-header, .days-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; text-align: center; }
-        .highlight-date { border: 2px solid var(--accent-color); border-radius: 50%; width: 38px; height: 38px; display: inline-flex; align-items: center; justify-content: center; }
+        .calendar { margin-top: 20px; font-family: var(--font-main); width: 100%; max-width: 320px; }
+        .days-header, .days-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; text-align: center; margin-bottom: 10px; }
+        .days-header { font-weight: bold; }
+        .days-grid div { padding: 5px 0; display: flex; justify-content: center; align-items: center; }
+        .highlight-date { position: relative; display: inline-block; width: 38px; height: 38px; line-height: 34px; color: var(--text-color); font-weight: 600; border: 2px solid var(--accent-color); border-radius: 48% 53% 50% 55% / 52% 49% 53% 47%; overflow: hidden; }
+        .highlight-date::after { content: ''; position: absolute; top: -50%; left: -60%; width: 35%; height: 200%; background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%); transform: rotate(30deg); animation: lightShimmer 3.5s infinite linear; }
+        @keyframes lightShimmer { 0% { left: -70%; } 25% { left: 130%; } 100% { left: 130%; } }
 
-        .venue-img-container { width: 100%; margin: 25px 0; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
-        .venue-img-container img { width: 100%; height: 390px; object-fit: cover; }
+        .venue-img-container { width: 100%; height: 390px; margin: 25px 0; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
+        .venue-img-container img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
         
-        .btn-outline { display: inline-block; padding: 12px 30px; border: 1px solid #fff; border-radius: 25px; text-decoration: none; color: #fff; margin-top: 20px; }
+        .btn-outline { display: inline-block; padding: 12px 30px; border: 1px solid #fff; border-radius: 25px; text-decoration: none; color: #fff; font-size: 1.1rem; margin-top: 20px; background: transparent; transition: background 0.3s, color 0.3s; }
+        .btn-outline:hover { background: #fff; color: var(--accent-color); }
 
-        .color-palette { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
-        .color-circle { width: 50px; height: 50px; border-radius: 50%; }
+        .color-palette { display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; margin-top: 30px; max-width: 340px; }
+        .color-circle { width: 55px; height: 55px; border-radius: 50%; box-shadow: 0 3px 6px rgba(0,0,0,0.1); position: relative; }
+        .color-circle::after { content: attr(data-name); position: absolute; bottom: -22px; left: 50%; transform: translateX(-50%); font-size: 0.8rem; white-space: nowrap; color: var(--text-color); font-weight: 600; }
 
-        .couple-card-container { width: 100%; display: flex; justify-content: center; }
-        .couple-illustration img { width: 100%; max-width: 380px; height: auto; border-radius: 10px; }
+        .timeline { margin-top: 30px; width: 100%; }
+        .timeline-item { display: flex; align-items: center; justify-content: center; margin-bottom: 30px; }
+        .t-text { flex: 1; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
+        .t-text.left { text-align: right; padding-right: 20px; }
+        .t-text.right { text-align: left; padding-left: 20px; font-size: 1.5rem; font-weight: 600;}
+        .t-center { display: flex; flex-direction: column; align-items: center; position: relative; }
+        .t-icon { font-size: 2rem; margin: 10px 0; }
+        .t-line { width: 1px; height: 40px; background-color: #fff; }
 
-        form { width: 100%; text-align: left; }
-        input[type="text"] { width: 100%; padding: 15px; border: 1px solid var(--text-color); border-radius: 25px; background: transparent; margin-bottom: 20px; }
-        button[type="submit"] { width: 100%; padding: 15px; background-color: var(--btn-color); color: #fff; border: none; border-radius: 25px; cursor: pointer; }
+        form { width: 100%; text-align: left; margin-top: 20px; }
+        .input-group { margin-bottom: 20px; }
+        input[type="text"] { width: 100%; padding: 15px; border: 1px solid var(--text-color); border-radius: 25px; background: transparent; font-family: var(--font-main); font-size: 1.1rem; color: var(--text-color); }
+        .radio-group label { display: block; margin-bottom: 10px; font-size: 1.2rem; cursor: pointer; }
+        input[type="radio"] { margin-right: 10px; accent-color: var(--btn-color); }
+        button[type="submit"] { width: 100%; padding: 15px; background-color: var(--btn-color); color: #fff; border: none; border-radius: 25px; font-family: var(--font-main); font-size: 1.2rem; letter-spacing: 1px; margin-top: 20px; cursor: pointer; }
+
+        .couple-card-container { width: 100%; display: flex; justify-content: center; align-items: center; padding: 10px 0; }
+        .couple-illustration img { width: 100%; max-width: 380px; height: auto; border-radius: 10px; display: block; }
     </style>
 </head>
 <body>
 
 <div class="app-container">
+
     <section id="hero" class="fade-in">
         <h2>Wedding Invitation</h2>
+        <div class="hero-subtitle">ТИСНІТЬ СЮДИ</div>
+        <div class="arrow-down">↓</div>
+        
         <div class="envelope-placeholder" onclick="document.getElementById('story').scrollIntoView({ behavior: 'smooth' });">
             <div class="wax-seal">ОВ</div>
         </div>
@@ -110,46 +159,123 @@
 
     <section id="story" class="fade-in">
         <h2>Впізнали?</h2>
-        <div class="photo-frame"><img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=200&h=240&fit=crop" alt="Хлопчик"></div>
-        <p>Дві історії. Одне «так».</p>
+        <div class="photos-container">
+            <div class="photo-frame">
+                <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=200&h=240&fit=crop" alt="Хлопчик">
+            </div>
+            <div style="font-size: 1.5rem;">+</div>
+            <div class="photo-frame">
+                <img src="https://images.unsplash.com/photo-1604004555489-723a93d6ce74?w=200&h=240&fit=crop" alt="Дівчинка">
+            </div>
+        </div>
+        <p>Маленькі ми...</p>
+        <p>Дві історії</p>
+        <p>Одне «так»</p>
     </section>
 
-    <section id="invite" class="fade-in">
-        <div class="env-letter">
-            <h2>Любі Гості!</h2>
-            <p>Ми раді запросити вас на наше весілля.</p>
+    <section id="invite" class="fade-in section-envelope">
+        <div class="open-envelope">
+            <div class="env-back"></div>
+            <div class="env-flap-top"></div>
+            <div class="env-letter">
+                <h2 style="font-size: 2.5rem; margin-bottom: 10px;">Любі Гості!</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 10px;">Ми раді запросити вас на наше весілля — у день, сповнений любові, світла й справжніх емоцій.</p>
+                <p style="font-size: 1.1rem; margin-bottom: 0;">Приєднуйтесь, щоб відсвяткувати цей особливий день разом з нами.</p>
+            </div>
+            <div class="env-front"></div>
         </div>
     </section>
 
     <section id="calendar-sec" class="fade-in">
         <h2>Серпень 2026</h2>
         <div class="calendar">
-            <div class="days-header"><div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Нд</div></div>
-            <div class="days-grid"><div></div>...<div><span class="highlight-date">28</span></div></div>
+            <div class="days-header">
+                <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Нд</div>
+            </div>
+            <div class="days-grid">
+                <div></div><div></div><div></div><div></div><div></div><div>1</div><div>2</div>
+                <div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div>
+                <div>10</div><div>11</div><div>12</div><div>13</div><div>14</div><div>15</div><div>16</div>
+                <div>17</div><div>18</div><div>19</div><div>20</div><div>21</div><div>22</div><div>23</div>
+                <div>24</div><div>25</div><div>26</div><div>27</div>
+                <div>
+                    <span class="highlight-date">28</span>
+                </div>
+                <div>29</div><div>30</div>
+                <div>31</div><div></div><div></div><div></div><div></div><div></div><div></div>
+            </div>
         </div>
     </section>
 
     <section id="venue" class="fade-in dark-section">
         <h2>Місце проведення</h2>
-        <p>«Forest Park»<br>с. Пониковиця</p>
+        <p>«Forest Park»<br>с. Пониковиця, Львівська область</p>
+        
         <div class="venue-img-container">
             <img src="ForestPark.png" alt="Локація Forest Park">
         </div>
+        
         <a href="https://maps.app.goo.gl/e8PBa57pZh5xeCM87" target="_blank" class="btn-outline">Подивитись на мапі</a>
     </section>
 
     <section id="dresscode" class="fade-in">
         <h2>Дрес-код</h2>
+        <p>Нам головне ваша присутність, але ми будемо вдячні, якщо ви підтримаєте кольорову гаму нашого свята</p>
+        
         <div class="color-palette">
-            <div class="color-circle" style="background-color: #8A9A86;"></div>
-            <div class="color-circle" style="background-color: #F4E3CB;"></div>
+            <div class="color-circle" style="background-color: #8A9A86;" data-name="Sage Green"></div>
+            <div class="color-circle" style="background-color: #F4E3CB;" data-name="Champagne"></div>
+            <div class="color-circle" style="background-color: #AF9F90;" data-name="Taupe"></div>
+            <div class="color-circle" style="background-color: #C98A86;" data-name="Dusty Rose"></div>
+            <div class="color-circle" style="background-color: #A38391;" data-name="Mauve"></div>
         </div>
     </section>
 
+    <section id="program" class="fade-in dark-section">
+        <h2>Program дня</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="t-text left">ЗУСТРІЧ<br>ГОСТЕЙ</div>
+                <div class="t-center">
+                    <div class="t-line"></div>
+                    <div class="t-icon">🥂</div>
+                    <div class="t-line"></div>
+                </div>
+                <div class="t-text right">14:00</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="t-text left">ЦЕРЕМОНІЯ</div>
+                <div class="t-center">
+                    <div class="t-line"></div>
+                    <div class="t-icon">💍</div>
+                    <div class="t-line"></div>
+                </div>
+                <div class="t-text right">15:00</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="wishes" class="fade-in">
+        <h2>Побажання</h2>
+        <p>Просимо вас не дарувати нам квіти, на жаль, ми не встигнемо насолодитися їх красою.</p>
+        <br>
+        <p>Приємним компліментом для нас буде, якщо ви замість квітів вирішите подарувати нам набір ваших улюблених спецій або пляшку алкогольного напою для нашої колекції.</p>
+    </section>
+
     <section id="rsvp" class="fade-in">
-        <h2>Підтвердження</h2>
+        <h2>Підтвердження присутності</h2>
         <form id="rsvp-form">
-            <input type="text" placeholder="Ваше ім'я" required>
+            <div class="input-group">
+                <input type="text" placeholder="Ваше ім'я та прізвище" required>
+            </div>
+            
+            <p style="margin-top: 30px; font-weight: bold;">Чи плануєте ви бути на весіллі?</p>
+            <div class="radio-group">
+                <label><input type="radio" name="attendance" value="yes"> Так, із задоволенням!</label>
+                <label><input type="radio" name="attendance" value="no"> На жаль, не зможу</label>
+            </div>
+
             <button type="submit">ВІДПРАВИТИ</button>
         </form>
     </section>
@@ -161,16 +287,27 @@
             </div>
         </div>
     </section>
+
 </div>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-        document.getElementById('rsvp-form').addEventListener('submit', (e) => { e.preventDefault(); alert('Дякуємо!'); });
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+        const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            });
+        }, appearOptions);
+        faders.forEach(fader => appearOnScroll.observe(fader));
+        document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Дякуємо! Вашу відповідь успішно відправлено.');
+        });
     });
 </script>
+
 </body>
 </html>
