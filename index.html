@@ -186,20 +186,20 @@
             position: relative;
             width: 100%;
             max-width: 380px;
-            margin: 20px auto;
-            padding-top: 30px;
+            margin: 40px auto 20px auto;
+            padding-top: 90px; /* Додали простору зверху для висунутого листа */
             padding-bottom: 20px;
         }
         .env-back {
             position: absolute;
-            top: 30px; bottom: 0; left: 0; right: 0;
+            top: 90px; bottom: 0; left: 0; right: 0;
             background-color: #5a101d; /* Темніший бордовий для глибини */
             border-radius: 5px;
             z-index: 1;
         }
         .env-flap-top {
             position: absolute;
-            top: 30px; left: 0; right: 0;
+            top: 90px; left: 0; right: 0;
             height: 40%;
             background-color: #731826;
             z-index: 1;
@@ -211,17 +211,17 @@
             color: var(--text-color);
             width: 88%;
             margin: 0 auto;
-            padding: 35px 20px;
+            padding: 30px 20px;
             position: relative;
             z-index: 2;
             box-shadow: 0 0 15px rgba(0,0,0,0.15);
             border-radius: 3px;
-            transform: translateY(-20px);
+            transform: translateY(-80px); /* Витягнули лист значно вище */
         }
         .env-front {
             position: absolute;
             bottom: 0; left: 0; right: 0;
-            height: 65%;
+            height: 55%; /* Трохи зменшили висоту передньої стінки, щоб відкрити більше тексту */
             background-color: var(--accent-color);
             z-index: 3;
             clip-path: polygon(0 100%, 100% 100%, 100% 0, 50% 35%, 0 0);
@@ -268,7 +268,7 @@
             width: 100%;
             height: 250px;
             background-color: #ddd;
-            background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80'); /* Лісовий парк заглушка */
+            background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80');
             background-size: cover;
             background-position: center;
             margin: 20px 0;
@@ -306,7 +306,6 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             position: relative;
         }
-        /* Підказки кольорів при наведенні або просто для краси */
         .color-circle::after {
             content: attr(data-name);
             position: absolute;
@@ -431,12 +430,10 @@
     <section id="story" class="fade-in">
         <h2>Впізнали?</h2>
         <div class="photos-container">
-            <!-- Дитяче фото хлопчика -->
             <div class="photo-frame">
                 <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=200&h=240&fit=crop" alt="Хлопчик">
             </div>
             <div style="font-size: 1.5rem;">+</div>
-            <!-- Дитяче фото дівчинки -->
             <div class="photo-frame">
                 <img src="https://images.unsplash.com/photo-1604004555489-723a93d6ce74?w=200&h=240&fit=crop" alt="Дівчинка">
             </div>
@@ -446,16 +443,15 @@
         <p>Одне «так»</p>
     </section>
 
-    <!-- Світла секція з відкритим бордовим конвертом -->
+    <!-- Сторінка з відкритим конвертом (лист висунуто вище) -->
     <section id="invite" class="fade-in">
         <div class="open-envelope">
             <div class="env-back"></div>
             <div class="env-flap-top"></div>
             <div class="env-letter">
                 <h2 style="font-size: 2.5rem; margin-bottom: 10px;">Любі Гості!</h2>
-                <p style="font-size: 1.1rem;">Ми раді запросити вас на наше весілля — у день, сповнений любові, світла й справжніх емоцій.</p>
-                <br>
-                <p style="font-size: 1.1rem;">Приєднуйтесь, щоб відсвяткувати цей особливий день разом з нами.</p>
+                <p style="font-size: 1.1rem; margin-bottom: 10px;">Ми раді запросити вас на наше весілля — у день, сповнений любові, світла й справжніх емоцій.</p>
+                <p style="font-size: 1.1rem; margin-bottom: 0;">Приєднуйтесь, щоб відсвяткувати цей особливий день разом з нами.</p>
             </div>
             <div class="env-front"></div>
         </div>
@@ -468,7 +464,6 @@
                 <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Нд</div>
             </div>
             <div class="days-grid">
-                <!-- Серпень 2026 починається у Суботу. Пропускаємо 5 днів -->
                 <div></div><div></div><div></div><div></div><div></div><div>1</div><div>2</div>
                 <div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div>
                 <div>10</div><div>11</div><div>12</div><div>13</div><div>14</div><div>15</div><div>16</div>
@@ -486,7 +481,6 @@
         </div>
     </section>
 
-    <!-- Темна секція з рваними краями -->
     <section id="venue" class="fade-in dark-section">
         <h2>Місце проведення</h2>
         <p>«Forest Park»<br>с. Пониковиця, Львівська область</p>
@@ -512,7 +506,6 @@
         </div>
     </section>
 
-    <!-- Темна секція з рваними краями -->
     <section id="program" class="fade-in dark-section">
         <h2>Програма дня</h2>
         <div class="timeline">
