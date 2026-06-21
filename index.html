@@ -425,33 +425,75 @@
             background: #fff;
             color: var(--accent-color);
         }
-        .paint-palette{
-            width:100%;
-            max-width:340px;
-            margin:40px auto 0;
+
+        .color-palette {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 18px;
+            margin-top: 30px;
+            width: 100%;
+            max-width: 340px;
         }
-        
-        .paint-stroke{
-            height:54px;
-            margin-bottom:12px;
-            position:relative;
-        
-            box-shadow:
-                0 4px 8px rgba(0,0,0,.12);
-        
+        .color-circle {
+            width: 54px;
+            height: 128px;
+            border-radius: 34% 41% 48% 51% / 8% 10% 23% 28%;
+            box-shadow: 0 5px 9px rgba(74,18,26,0.1);
+            position: relative;
+            overflow: hidden;
             clip-path: polygon(
-                4% 50%,
-                8% 20%,
-                18% 8%,
-                65% 8%,
-                88% 10%,
-                100% 22%,
-                98% 80%,
-                84% 92%,
-                18% 92%,
-                8% 78%
+                4% 3%, 18% 0%, 31% 4%, 45% 1%, 61% 5%, 78% 1%, 96% 8%,
+                87% 19%, 92% 31%, 79% 43%, 83% 55%, 69% 66%, 72% 78%,
+                57% 89%, 52% 100%, 37% 96%, 31% 84%, 20% 74%, 23% 61%,
+                13% 49%, 17% 36%, 7% 23%
             );
-        }                    
+        }
+        .color-circle::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                repeating-linear-gradient(88deg, rgba(250,246,238,0.18) 0 2px, transparent 2px 8px),
+                radial-gradient(ellipse at 34% 18%, rgba(250,246,238,0.18) 0 16%, transparent 17%),
+                linear-gradient(90deg, rgba(0,0,0,0.07), transparent 28%, rgba(0,0,0,0.08));
+            opacity: 0.46;
+            mix-blend-mode: multiply;
+        }
+        .color-circle::after {
+            content: "";
+            position: absolute;
+            inset: 4px 7px 9px;
+            background:
+                radial-gradient(ellipse at 58% 12%, rgba(250,246,238,0.24) 0 10%, transparent 11%),
+                repeating-linear-gradient(96deg, rgba(0,0,0,0.08) 0 1px, transparent 1px 9px);
+            opacity: 0.32;
+            filter: blur(0.2px);
+        }
+        .color-circle:nth-child(1) {
+            transform: rotate(-3deg);
+        }
+        .color-circle:nth-child(2) {
+            height: 120px;
+            transform: rotate(2deg);
+            clip-path: polygon(3% 7%, 19% 1%, 36% 5%, 52% 0%, 69% 5%, 86% 2%, 97% 12%, 88% 25%, 94% 38%, 81% 50%, 86% 63%, 70% 76%, 65% 90%, 50% 100%, 35% 94%, 29% 81%, 17% 68%, 23% 55%, 11% 42%, 18% 29%, 7% 17%);
+        }
+        .color-circle:nth-child(3) {
+            height: 134px;
+            transform: rotate(-1deg);
+            clip-path: polygon(5% 4%, 21% 0%, 34% 4%, 49% 1%, 66% 5%, 82% 2%, 96% 10%, 89% 22%, 93% 35%, 80% 48%, 84% 61%, 68% 74%, 62% 88%, 47% 100%, 32% 95%, 26% 82%, 15% 70%, 20% 56%, 10% 43%, 16% 30%, 6% 17%);
+        }
+        .color-circle:nth-child(4) {
+            height: 124px;
+            transform: rotate(3deg);
+            clip-path: polygon(4% 6%, 17% 1%, 33% 5%, 48% 0%, 63% 4%, 80% 1%, 95% 9%, 87% 21%, 92% 34%, 79% 47%, 83% 60%, 67% 73%, 61% 87%, 45% 100%, 30% 95%, 24% 82%, 13% 69%, 19% 56%, 8% 43%, 15% 29%, 5% 16%);
+        }
+        .color-circle:nth-child(5) {
+            transform: rotate(-2deg);
+            clip-path: polygon(6% 5%, 20% 0%, 38% 5%, 54% 1%, 71% 6%, 87% 3%, 96% 13%, 89% 25%, 93% 39%, 80% 51%, 85% 64%, 68% 77%, 62% 90%, 48% 100%, 33% 96%, 27% 83%, 16% 70%, 22% 57%, 10% 44%, 17% 31%, 7% 18%);
+        }
+
         .timeline {
             margin-top: 30px;
             width: 100%;
@@ -547,77 +589,7 @@
     </style>
 </head>
 <body>
-    
-<svg width="0" height="0" style="position:absolute">
-    <defs>
 
-        <filter id="paintTexture">
-            <feTurbulence
-                type="fractalNoise"
-                baseFrequency="0.03 0.45"
-                numOctaves="4"
-                seed="15"
-                result="noise"/>
-
-            <feDisplacementMap
-                in="SourceGraphic"
-                in2="noise"
-                scale="5"/>
-
-            <feSpecularLighting
-                in="noise"
-                surfaceScale="3"
-                specularConstant="0.4"
-                specularExponent="18"
-                lighting-color="#ffffff"
-                result="spec">
-                <feDistantLight azimuth="45" elevation="50"/>
-            </feSpecularLighting>
-
-            <feBlend
-                in="SourceGraphic"
-                in2="spec"
-                mode="soft-light"/>
-        </filter>
-
-        <linearGradient id="olivePaint" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#5f694f"/>
-            <stop offset="25%" stop-color="#7e8970"/>
-            <stop offset="50%" stop-color="#6f7a60"/>
-            <stop offset="75%" stop-color="#8d9980"/>
-            <stop offset="100%" stop-color="#667154"/>
-        </linearGradient>
-
-        <linearGradient id="beigePaint" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#d1ae87"/>
-            <stop offset="30%" stop-color="#e7c5a0"/>
-            <stop offset="60%" stop-color="#dcb58e"/>
-            <stop offset="100%" stop-color="#c99f75"/>
-        </linearGradient>
-
-        <linearGradient id="taupePaint" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#6d665f"/>
-            <stop offset="30%" stop-color="#8b837b"/>
-            <stop offset="60%" stop-color="#79726a"/>
-            <stop offset="100%" stop-color="#655f58"/>
-        </linearGradient>
-
-        <linearGradient id="terracottaPaint" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#aa6c42"/>
-            <stop offset="25%" stop-color="#c8885c"/>
-            <stop offset="55%" stop-color="#b7784c"/>
-            <stop offset="100%" stop-color="#9f633c"/>
-        </linearGradient>
-
-        <linearGradient id="ivoryPaint" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#ebe4d8"/>
-            <stop offset="30%" stop-color="#fffaf1"/>
-            <stop offset="60%" stop-color="#f1eadf"/>
-            <stop offset="100%" stop-color="#e4ddd0"/>
-        </linearGradient>
-
-    </defs>
-</svg>
 <div class="app-container">
 
     <section id="hero" class="fade-in">
@@ -694,20 +666,16 @@
     </section>
 
     <section id="dresscode" class="fade-in">
-    <h2>Дрес-код</h2>
-
-    <p>
-        Нам головне ваша присутність, але будемо вдячні,
-        якщо ви підтримаєте кольорову гаму нашого свята
-    </p>
-
-    <div class="paint-palette">
-        <div class="paint-stroke olive"></div>
-        <div class="paint-stroke beige"></div>
-        <div class="paint-stroke taupe"></div>
-        <div class="paint-stroke terracotta"></div>
-        <div class="paint-stroke ivory"></div>
-    </div>
+        <h2>Дрес-код</h2>
+        <p>Нам головне ваша присутність, але we будемо вдячні, якщо ви підтримаєте кольорову гаму нашого свята</p>
+        
+        <div class="color-palette">
+            <div class="color-circle" style="background-color: #8A9A86;" data-name=""></div>
+            <div class="color-circle" style="background-color: #F4E3CB;" data-name=""></div>
+            <div class="color-circle" style="background-color: #AF9F90;" data-name=""></div>
+            <div class="color-circle" style="background-color: #C98A86;" data-name=""></div>
+            <div class="color-circle" style="background-color: #A38391;" data-name=""></div>
+        </div>
     </section>
 
     <section id="program" class="fade-in dark-section">
