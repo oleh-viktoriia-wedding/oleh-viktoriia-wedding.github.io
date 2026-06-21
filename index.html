@@ -426,29 +426,32 @@
             color: var(--accent-color);
         }
         .paint-palette{
-            display:flex;
-            justify-content:center;
-            align-items:flex-end;
-            gap:12px;
-            margin-top:40px;
             width:100%;
+            max-width:340px;
+            margin:40px auto 0;
         }
         
         .paint-stroke{
-            width:58px;
-            height:175px;
-            overflow:visible;
+            height:54px;
+            margin-bottom:12px;
+            position:relative;
         
-            filter:
-                drop-shadow(0 8px 10px rgba(0,0,0,.10))
-                drop-shadow(0 2px 3px rgba(255,255,255,.15));
+            box-shadow:
+                0 4px 8px rgba(0,0,0,.12);
         
-            transition:.35s ease;
-        }
-        
-        .paint-stroke:hover{
-            transform:translateY(-8px);
-        }
+            clip-path: polygon(
+                4% 50%,
+                8% 20%,
+                18% 8%,
+                65% 8%,
+                88% 10%,
+                100% 22%,
+                98% 80%,
+                84% 92%,
+                18% 92%,
+                8% 78%
+            );
+        }                    
         .timeline {
             margin-top: 30px;
             width: 100%;
@@ -699,33 +702,12 @@
     </p>
 
     <div class="paint-palette">
-
-        <svg class="paint-stroke" viewBox="0 0 120 280">
-            <path fill="url(#olivePaint)" filter="url(#paintTexture)"
-            d="M25 15 C10 40 15 80 20 130 C25 180 15 220 35 255 C50 275 75 275 90 255 C108 230 105 190 100 140 C95 95 110 45 92 18 C78 0 45 2 25 15 Z"/>
-        </svg>
-
-        <svg class="paint-stroke" viewBox="0 0 120 280">
-            <path fill="url(#beigePaint)" filter="url(#paintTexture)"
-            d="M28 12 C12 35 18 85 20 130 C22 175 14 225 32 255 C48 278 75 274 92 252 C108 232 103 185 100 135 C96 90 106 42 88 15 C73 -2 45 -1 28 12 Z"/>
-        </svg>
-
-        <svg class="paint-stroke" viewBox="0 0 120 280">
-            <path fill="url(#taupePaint)" filter="url(#paintTexture)"
-            d="M22 18 C8 45 15 88 20 135 C24 182 18 225 34 258 C50 278 80 275 95 250 C110 228 104 185 100 135 C95 82 108 42 90 18 C75 -1 42 0 22 18 Z"/>
-        </svg>
-
-        <svg class="paint-stroke" viewBox="0 0 120 280">
-            <path fill="url(#terracottaPaint)" filter="url(#paintTexture)"
-            d="M25 10 C10 35 18 80 20 130 C22 185 15 230 35 260 C50 280 82 275 96 248 C108 225 103 180 100 128 C97 82 106 35 88 12 C70 -5 45 0 25 10 Z"/>
-        </svg>
-
-        <svg class="paint-stroke" viewBox="0 0 120 280">
-            <path fill="url(#ivoryPaint)" filter="url(#paintTexture)"
-            d="M26 15 C12 40 18 85 20 130 C22 178 15 222 35 255 C52 280 78 278 92 255 C108 230 104 185 100 135 C96 88 108 40 92 15 C74 -2 44 0 26 15 Z"/>
-        </svg>
-
-        </div>
+        <div class="paint-stroke olive"></div>
+        <div class="paint-stroke beige"></div>
+        <div class="paint-stroke taupe"></div>
+        <div class="paint-stroke terracotta"></div>
+        <div class="paint-stroke ivory"></div>
+    </div>
     </section>
 
     <section id="program" class="fade-in dark-section">
