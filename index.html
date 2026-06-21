@@ -435,23 +435,20 @@
         }
         
         .paint-stroke{
-            width:58px;
-            height:170px;
-            overflow:visible;
+            width:60px;
+            height:180px;
         
             filter:
-                drop-shadow(0 6px 8px rgba(0,0,0,.08))
-                drop-shadow(0 2px 2px rgba(255,255,255,.15));
+                drop-shadow(0 6px 10px rgba(0,0,0,.12))
+                drop-shadow(0 2px 3px rgba(255,255,255,.25));
         
-            transition:.4s ease;
+            transition:.35s;
         }
         
         .paint-stroke:hover{
-            transform:translateY(-8px);
-        }
-        
-        .paint-stroke path{
-            filter:url(#paintTexture);
+            transform:
+                translateY(-6px)
+                scale(1.03);
         }
         .timeline {
             margin-top: 30px;
@@ -548,7 +545,9 @@
     </style>
 </head>
 <body>
+    
 <svg width="0" height="0" style="position:absolute">
+    
     <defs>
         <filter id="paintTexture">
             <feTurbulence
@@ -561,6 +560,49 @@
                 in="SourceGraphic"
                 in2="noise"
                 scale="2"/>
+        </filter>
+        <linearGradient id="olivePaint" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#5f694f"/>
+            <stop offset="20%" stop-color="#78836b"/>
+            <stop offset="45%" stop-color="#6a755a"/>
+            <stop offset="75%" stop-color="#87937a"/>
+            <stop offset="100%" stop-color="#647054"/>
+        </linearGradient>
+
+        <linearGradient id="beigePaint" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#d0ab82"/>
+            <stop offset="25%" stop-color="#e6c39e"/>
+            <stop offset="55%" stop-color="#dcb48d"/>
+            <stop offset="100%" stop-color="#c99f75"/>
+        </linearGradient>
+        
+        <filter id="paintTexture">
+            <feTurbulence
+                type="fractalNoise"
+                baseFrequency="0.03 0.45"
+                numOctaves="4"
+                seed="15"
+                result="noise"/>
+        
+            <feDisplacementMap
+                in="SourceGraphic"
+                in2="noise"
+                scale="5"/>
+        
+            <feSpecularLighting
+                in="noise"
+                surfaceScale="3"
+                specularConstant="0.4"
+                specularExponent="18"
+                lighting-color="#ffffff"
+                result="spec">
+                <feDistantLight azimuth="45" elevation="50"/>
+            </feSpecularLighting>
+        
+            <feBlend
+                in="SourceGraphic"
+                in2="spec"
+                mode="soft-light"/>
         </filter>
     </defs>
 </svg>
@@ -649,30 +691,47 @@
 
     <div class="paint-palette">
 
-        <svg class="paint-stroke" viewBox="0 0 120 280">
-            <path d="M25 15 C10 40 15 80 20 130 C25 180 15 220 35 255 C50 275 75 275 90 255 C108 230 105 190 100 140 C95 95 110 45 92 18 C78 0 45 2 25 15 Z"
-                fill="#667154"/>
-        </svg>
+<svg class="paint-stroke" viewBox="0 0 120 280">
 
-        <svg class="paint-stroke" viewBox="0 0 120 280">
-            <path d="M28 12 C12 35 18 85 20 130 C22 175 14 225 32 255 C48 278 75 274 92 252 C108 232 103 185 100 135 C96 90 106 42 88 15 C73 -2 45 -1 28 12 Z"
-                fill="#D8B089"/>
-        </svg>
+    <path
+        d="M25 15
+           C10 40 15 80 20 130
+           C25 180 15 220 35 255
+           C50 275 75 275 90 255
+           C108 230 105 190 100 140
+           C95 95 110 45 92 18
+           C78 0 45 2 25 15 Z"
+        fill="url(#olivePaint)"
+        filter="url(#paintTexture)"
+    />
 
-        <svg class="paint-stroke" viewBox="0 0 120 280">
-            <path d="M22 18 C8 45 15 88 20 135 C24 182 18 225 34 258 C50 278 80 275 95 250 C110 228 104 185 100 135 C95 82 108 42 90 18 C75 -1 42 0 22 18 Z"
-                fill="#7C756E"/>
-        </svg>
+    <!-- борозни від шпателя -->
+    <g opacity=".18">
 
-        <svg class="paint-stroke" viewBox="0 0 120 280">
-            <path d="M25 10 C10 35 18 80 20 130 C22 185 15 230 35 260 C50 280 82 275 96 248 C108 225 103 180 100 128 C97 82 106 35 88 12 C70 -5 45 0 25 10 Z"
-                fill="#B67A4E"/>
-        </svg>
+        <line x1="25" y1="45" x2="95" y2="45"
+              stroke="#ffffff" stroke-width="1"/>
 
-        <svg class="paint-stroke" viewBox="0 0 120 280">
-            <path d="M26 15 C12 40 18 85 20 130 C22 178 15 222 35 255 C52 280 78 278 92 255 C108 230 104 185 100 135 C96 88 108 40 92 15 C74 -2 44 0 26 15 Z"
-                fill="#F3EFE4"/>
-        </svg>
+        <line x1="22" y1="65" x2="98" y2="65"
+              stroke="#ffffff" stroke-width="1"/>
+
+        <line x1="20" y1="90" x2="96" y2="90"
+              stroke="#ffffff" stroke-width="1"/>
+
+        <line x1="18" y1="115" x2="94" y2="115"
+              stroke="#ffffff" stroke-width="1"/>
+
+        <line x1="20" y1="140" x2="95" y2="140"
+              stroke="#ffffff" stroke-width="1"/>
+
+        <line x1="22" y1="170" x2="92" y2="170"
+              stroke="#ffffff" stroke-width="1"/>
+
+        <line x1="25" y1="200" x2="90" y2="200"
+              stroke="#ffffff" stroke-width="1"/>
+
+    </g>
+
+</svg>
 
     </div>
     </section>
