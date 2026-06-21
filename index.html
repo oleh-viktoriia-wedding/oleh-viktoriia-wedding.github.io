@@ -624,7 +624,9 @@
             <div class="env-back"></div>
             <div class="env-flap-top"></div>
             <div class="env-letter">
-                <h2 style="font-size: 2.5rem; margin-bottom: 10px;">Дорога Діано!</h2>
+                <h2 id="guest-name" style="font-size: 2.5rem; margin-bottom: 10px;">
+                    Дорога Діано!
+                </h2>
                 <p style="font-size: 1.1rem; margin-bottom: 10px;">Ми раді запросити вас на наше весілля — у день, сповнений любові, світла й справжніх емоцій.</p>
                 <p style="font-size: 1.1rem; margin-bottom: 0;">Приєднуйтесь, щоб відсвяткувати цей особливий день разом з нами.</p>
             </div>
@@ -759,6 +761,32 @@
             appearOnScroll.observe(fader);
         });
 
+
+        const params = new URLSearchParams(window.location.search);
+        const guest = params.get('guest');
+        
+        if (guest) {
+            const guestTitle = document.getElementById('guest-name');
+        
+            let greeting = 'Дорогі';
+        
+            if (
+                !guest.includes(' та ') &&
+                !guest.includes('&') &&
+                !guest.includes(',')
+            ) {
+                const lastChar = guest.trim().slice(-1).toLowerCase();
+        
+                if (['а', 'я'].includes(lastChar)) {
+                    greeting = 'Дорога';
+                } else {
+                    greeting = 'Дорогий';
+                }
+            }
+        
+            guestTitle.textContent = `${greeting} ${guest}!`;
+        }
+        
         const envelope = document.querySelector('.envelope-placeholder');
         const storySection = document.getElementById('story');
         const openEnvelope = function() {
