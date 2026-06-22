@@ -665,11 +665,12 @@
             cursor: pointer;
         }
         .envelope-placeholder {
+            will-change: transform;
             transform: translateZ(0);
         }
         
         .envelope-placeholder::before {
-            transform: translateZ(0);
+            will-change: transform;
         }
         
         #musicBtn svg {
@@ -694,13 +695,9 @@
         <div class="arrow-down">↓</div>
         
         <div class="envelope-placeholder" role="button" tabindex="0" aria-label="Відкрити запрошення">
+            <div class="envelope-fold"></div>
             <div class="envelope-letter-peek"></div>
             <div class="wax-seal">OВ</div>
-            <div class="envelope-placeholder" role="button" tabindex="0" aria-label="Відкрити запрошення">
-                <div class="envelope-fold"></div>
-                <div class="envelope-letter-peek"></div>
-                <div class="wax-seal">OВ</div>
-            </div>
         </div>
     </section>
 
