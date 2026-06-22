@@ -147,30 +147,7 @@
             cursor: pointer;
             transition: transform 0.4s ease;
         }
-        .envelope-placeholder::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 55%;
-        
-            background: linear-gradient(180deg, #7a1a28, #4a0f19);
-        
-            clip-path: polygon(
-                0 0,
-                100% 0,
-                50% 99.5%
-            );
-        
-            transform-origin: top center;
-            transform: rotateX(0deg);
-        
-            transition: transform 1s cubic-bezier(.2,.85,.2,1);
-        
-            z-index: 4;
-            filter: drop-shadow(0 10px 10px rgba(0,0,0,.25));
-        }
+
         .envelope-placeholder:hover {
             transform: scale(1.02);
         }
@@ -178,13 +155,7 @@
             transform: scale(1.02);
             pointer-events: none;
         }
-        .envelope-placeholder.opening::before {
-            transform: rotateX(175deg);
-            filter: brightness(1.08);
-            z-index: 5;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-        }
+
         .envelope-letter-peek {
             position: absolute;
             left: 10%;
@@ -235,16 +206,42 @@
         }
         
         .envelope-placeholder .envelope-fold::before {
-            left: 10%;
-            width: 42%;
-            transform: rotate(37deg);
+            left: 11%;
+            width: 41%;
+            transform: rotate(36deg);
+        }
+
+        .envelope-placeholder.opening .envelope-flap-svg {
+            transform: rotateX(175deg);
         }
         
         .envelope-placeholder .envelope-fold::after {
-            right: 10%;
-            width: 42%;
-            transform: rotate(-37deg);
+            right: 11%;
+            width: 41%;
+            transform: rotate(-36deg);
         }
+
+        .envelope-flap-svg {
+            position: absolute;
+            inset: 0;
+        
+            width: 100%;
+            height: 55%;
+        
+            z-index: 4;
+        
+            transform-origin: top center;
+            transform-style: preserve-3d;
+        
+            transition:
+                transform 1s cubic-bezier(.2,.85,.2,1);
+        
+            filter:
+                drop-shadow(0 8px 8px rgba(0,0,0,.25));
+        
+            pointer-events: none;
+        }
+        
         .wax-seal {
             width: 74px;
             height: 74px;
@@ -711,6 +708,23 @@
         <div class="arrow-down">↓</div>
         
         <div class="envelope-placeholder" role="button" tabindex="0" aria-label="Відкрити запрошення">
+            <svg class="envelope-flap-svg"
+                 viewBox="0 0 100 55"
+                 preserveAspectRatio="none"
+                 aria-hidden="true">
+            
+                <defs>
+                    <linearGradient id="flapGradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#8d1a2c"/>
+                        <stop offset="100%" stop-color="#4a0f19"/>
+                    </linearGradient>
+                </defs>
+            
+                <polygon
+                    points="0,0 100,0 50,55"
+                    fill="url(#flapGradient)"
+                />
+            </svg>
             <div class="envelope-fold"></div>
             <div class="envelope-letter-peek"></div>
             <div class="wax-seal">OВ</div>
