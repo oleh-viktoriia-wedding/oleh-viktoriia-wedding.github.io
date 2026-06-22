@@ -724,6 +724,53 @@
             justify-content: center;
             cursor: pointer;
         }
+
+        .fake-lines {
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            top: 18px;
+        }
+        
+        .fake-lines span {
+            display: block;
+            height: 10px;
+            margin-bottom: 12px;
+        
+            background:
+                repeating-linear-gradient(
+                    90deg,
+                    rgba(74,18,26,.45) 0 10px,
+                    transparent 10px 16px
+                );
+        
+            border-radius: 20px;
+        
+            transform: scaleX(0);
+            transform-origin: left;
+        }
+        
+        .envelope-placeholder.opening .fake-lines span {
+            animation: drawLine .7s forwards;
+        }
+        
+        .envelope-placeholder.opening .fake-lines span:nth-child(2) {
+            animation-delay: .15s;
+        }
+        
+        .envelope-placeholder.opening .fake-lines span:nth-child(3) {
+            animation-delay: .3s;
+        }
+        
+        .envelope-placeholder.opening .fake-lines span:nth-child(4) {
+            animation-delay: .45s;
+        }
+        
+        @keyframes drawLine {
+            to {
+                transform: scaleX(1);
+            }
+        }
         
         #musicBtn svg {
             width: 22px;
@@ -749,9 +796,12 @@
         <div class="envelope-placeholder" role="button" tabindex="0" aria-label="Відкрити запрошення">
             <div class="envelope-fold"></div>
             <div class="envelope-letter-peek">
-                <div class="letter-handwriting">
-                    <h2 id="guest-name" style="font-size: 1.5rem; margin-bottom: 6px;"></h2>
-                </div>
+            <div class="fake-lines">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             </div>
             <div class="wax-seal">OВ</div>
         </div>
