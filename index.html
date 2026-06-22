@@ -190,44 +190,38 @@
                 0 20px 40px rgba(0,0,0,0.18),
                 inset 0 0 0 1px rgba(0,0,0,0.05);
         }
+        
         .letter-handwriting {
             position: absolute;
-            inset: 18px 20px;
+            inset: 0;
         
-            font-family: 'Great Vibes', cursive;
-            font-size: 1.7rem;
-            line-height: 1.15;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         
-            color: rgba(74,18,26,.7);
-        
-            text-align: left;
+            text-align: center;
         
             opacity: 0;
-        
             transform: translateY(10px);
         
             transition:
                 opacity .8s ease .45s,
                 transform .8s ease .45s;
-            overflow: hidden;
-            white-space: nowrap;
-            width: 0;
         }
+
+        
+        .letter-handwriting h2 {
+            width: 90%;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 1.2;
+        }
+        
         .envelope-placeholder.opening .letter-handwriting {
-            width: 100%;
-            animation: handwriting 2s steps(40,end) .5s forwards;
             opacity: 1;
             transform: translateY(0);
         }
         
-        @keyframes handwriting {
-            from {
-                width: 0;
-            }
-            to {
-                width: 100%;
-            }
-        }
 
         .envelope-placeholder.opening .envelope-letter-peek {
             opacity: 1;
@@ -761,7 +755,16 @@
             <div class="envelope-fold"></div>
             <div class="envelope-letter-peek">
                 <div class="letter-handwriting">
-                    <h2 id="guest-name" style="font-size: 1.5rem; margin-bottom: 6px;"></h2>
+                    <h2 id="guest-name"
+                        style="
+                            width: 95%;
+                            margin: 0;
+                            font-size: 1.5rem;
+                            line-height: 1.2;
+                            text-align: center;
+                        ">
+                        Дорогі Уляна та Богдане!
+                    </h2>
                 </div>
             </div>
             <div class="wax-seal">OВ</div>
