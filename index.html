@@ -587,6 +587,13 @@
             background-position: center;
         }
         
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
         .count-item {
             width: 70px;
             height: 95px;
@@ -859,14 +866,9 @@
                 }
             });
         }
-
-        document.getElementById('rsvp-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Дякуємо! Вашу відповідь успішно відправлено.');
-        });
         
         function updateCountdown() {
-            const weddingDate = new Date('2026-08-28T14:00:00');
+            const weddingDate = new Date(2026, 7, 28, 14, 0, 0);
         
             const now = new Date();
         
