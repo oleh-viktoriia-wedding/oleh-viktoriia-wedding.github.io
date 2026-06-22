@@ -153,10 +153,15 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 56%;
+            height: 55%;
         
             background: linear-gradient(180deg, #7a1a28, #4a0f19);
-            clip-path: polygon(0 0, 100% 0, 50% 100%);
+        
+            clip-path: polygon(
+                0 0,
+                100% 0,
+                50% 99.5%
+            );
         
             transform-origin: top center;
             transform: rotateX(0deg);
@@ -221,7 +226,7 @@
         .envelope-placeholder .envelope-fold::after {
             content: "";
             position: absolute;
-            top: 54%;
+            top: 54.8%;
             width: 44%;
             height: 3px;
             background: #3d0b14;
