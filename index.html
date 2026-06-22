@@ -608,7 +608,7 @@
 
     <section id="hero" class="fade-in">
         <h2>Запрошення</h2>
-        <div class="hero-subtitle">тиць сюди</div>
+        <p style="font-size: 1.1rem; margin-bottom: 10px;">тиць сюди</p>
         <div class="arrow-down">↓</div>
         
         <div class="envelope-placeholder" role="button" tabindex="0" aria-label="Відкрити запрошення">
@@ -704,7 +704,8 @@
 
     <section id="dresscode" class="fade-in">
         <h2>Дрескод</h2>
-        <p>Для нас надзвичайно важливо, щоб ви були поруч у цей особливий момент. І нам буде неймовірно приємно, якщо ви підтримаєте кольорову гаму нашого свята.</p>
+        <p>Для нас надзвичайно важливо, щоб ви були поруч у цей особливий момент.</p> 
+        <p>І нам буде неймовірно приємно, якщо ви підтримаєте кольорову гаму нашого свята.</p>
         
         <div class="color-palette">
             <div class="color-circle" style="background-color: #8A9A86;" data-name=""></div>
@@ -889,15 +890,9 @@
                 / (1000 * 60)
             );
         
-            const seconds = Math.floor(
-                (diff % (1000 * 60))
-                / 1000
-            );
-        
             document.getElementById('days').textContent = days;
             document.getElementById('hours').textContent = hours;
             document.getElementById('minutes').textContent = minutes;
-            document.getElementById('seconds').textContent = seconds;
         }
         
         updateCountdown();
