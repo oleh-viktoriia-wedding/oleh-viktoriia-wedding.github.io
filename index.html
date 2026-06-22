@@ -513,7 +513,7 @@
         
         .t-text.left {
             text-align: right;
-            padding-right: 20px;
+            padding-right: 24px;
             font-size: 1.4rem;
         }
         
@@ -521,7 +521,6 @@
             text-align: left;
             padding-left: 20px;
             font-size: 1.8rem;
-            font-weight: 600;
         }
         
         .t-center {
@@ -619,12 +618,27 @@
             font-size: 2.2rem;
             color: var(--accent-color);
         }
+
+        #musicBtn {
+            position: fixed;
+            right: 15px;
+            bottom: 15px;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background: #6B1724;
+            color: white;
+            font-size: 20px;
+            z-index: 999;
+        }
     </style>
 </head>
 <body>
 
 <div class="app-container">
-
+    <button id="musicBtn">🎵</button>
+    
     <section id="hero" class="fade-in">
         <h2>Запрошення</h2>
         <p style="font-size: 1.1rem; margin-bottom: 10px;">тиць сюди</p>
@@ -879,6 +893,34 @@
             });
         }
         
+        function openEnvelope() {
+            if (!envelope || envelope.classList.contains('opening')) {
+                return;
+            }
+        
+            envelope.classList.add('opening');
+        
+            const music = document.getElementById('bgMusic');
+            music.play();
+        
+            setTimeout(function() {
+                storySection.scrollIntoView({ behavior: 'smooth' });
+            }, 1050);
+        }
+
+        const music = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        
+        musicBtn.addEventListener('click', () => {
+            if (music.paused) {
+                music.play();
+                musicBtn.textContent = '🔊';
+            } else {
+                music.pause();
+                musicBtn.textContent = '🔇';
+            }
+        });
+        
         function updateCountdown() {
             const weddingDate = new Date(2026, 7, 28, 14, 0, 0);
         
@@ -913,6 +955,9 @@
         setInterval(updateCountdown, 1000);
     });
 </script>
-
+    
+<audio id="bgMusic" loop>
+    <source src="wedding-music.mp3" type="audio/mpeg">
+</audio>
 </body>
 </html>
