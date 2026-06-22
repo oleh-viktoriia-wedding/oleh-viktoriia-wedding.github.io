@@ -875,27 +875,6 @@
         
         const envelope = document.querySelector('.envelope-placeholder');
         const storySection = document.getElementById('story');
-        const openEnvelope = function() {
-            if (!envelope || envelope.classList.contains('opening')) {
-                return;
-            }
-
-            envelope.classList.add('opening');
-
-            setTimeout(function() {
-                storySection.scrollIntoView({ behavior: 'smooth' });
-            }, 1050);
-        };
-
-        if (envelope && storySection) {
-            envelope.addEventListener('click', openEnvelope);
-            envelope.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    openEnvelope();
-                }
-            });
-        }
         
         function openEnvelope() {
             if (!envelope || envelope.classList.contains('opening')) {
@@ -911,7 +890,17 @@
                 storySection.scrollIntoView({ behavior: 'smooth' });
             }, 1050);
         }
-
+        
+        if (envelope && storySection) {
+            envelope.addEventListener('click', openEnvelope);
+            envelope.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openEnvelope();
+                }
+            });
+        }
+        
         const music = document.getElementById('bgMusic');
         const musicBtn = document.getElementById('musicBtn');
         
@@ -956,7 +945,7 @@
         }
         
         updateCountdown();
-        setInterval(updateCountdown, 1000);
+        setInterval(updateCountdown, 60000);
     });
 </script>
     
